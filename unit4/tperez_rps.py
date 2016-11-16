@@ -1,13 +1,28 @@
 import random
-
+def ask_for_tutorial():
+    tutorial_prompt = input("You do know how to play Rock, Paper, Scissors, right? Input [ y or n ]: ")
+    while tutorial_prompt != 'y' and tutorial_prompt != 'n':
+        tutorial_prompt = input("\'y\' is for YES and \'n\' is for NO [ y or n ]: ")
+    return tutorial_prompt
+        
+def give_tutorial():
+    print("Wow...")
+    print("Uh...well anyway, you and the computer will choose Rock, Paper, or Scissors. Each item is strong against one item and weak against another.")
+    print("Rock is strong against Scissors and weak against Paper.")
+    print("Paper is strong against Rock and weak against Scissors.")
+    print("Scissors is strong against Paper and weak against Rock.")
+    print("If you pick a stronger item, you win a round.")
+    print("If you pick a weaker item, you lose a round.")
+    print("If you choose the same item as the computer, it's a tie.")
+    print("From there, I'll give you the scoreboard and tell you who won.")
 #function name: get_p1_move
 #   arguments: none
 #   purpose: present player with options, use input() to get player move
 #   returns: the player's move as either 'r', 'p', or 's'
 def get_p1_move():
-    your_move = input("Choose your move only from [r | p | s]: ")
+    your_move = input("Choose your move only from [r, p, s]: ")
     while your_move != 'r' and your_move != 'p' and your_move != 's':
-        your_move = input("Choose your move ONLY from [r | p | s]: ")
+        your_move = input("Choose your move ONLY from [r, p, s]: ")
     return your_move
 
 #function name: get_comp_move():
@@ -60,14 +75,21 @@ def get_round_winner(p1move, cmove):
 #               "Paper" if given "p"
 #               "Scissors" if given "s"
 def get_full_move(shortmove):
-    #code here
+    if shortmove == 'r':
+        return 'Rock'
+    elif shortmove == 's':
+        return 'Scissors'
+    else:
+        return 'Paper'
 
 #function name: print_score
 #   arguments: player score, computer score, number of ties
 #   purpose: prints the scoreboard
 #   returns: none
 def print_score(pscore, cscore, ties):
-    #code here
+    print("Player Score: {}".format(pscore))
+    print("Computer Score: {}".format(cscore))
+    print("Ties: {}".format(ties))
 
 #function name: rps
 #   arguments: none
@@ -75,7 +97,9 @@ def print_score(pscore, cscore, ties):
 #               all the other functions to create RPS
 #   returns: none
 def rps():
-    #code here
+    print("Let's play Rock, Paper, Scissors!")
+    if ask_for_tutorial() == 'y':
+        
 
 #function name: tests
 #   arguments: none
