@@ -14,7 +14,7 @@ def give_tutorial():
     print("If you pick a stronger item, you win a round.")
     print("If you pick a weaker item, you lose a round.")
     print("If you choose the same item as the computer, it's a tie.")
-    print("From there, I'll give you the scoreboard and tell you who won.")
+    print("After all the rounds, I'll give you the scoreboard and tell you who won.")
 #function name: get_p1_move
 #   arguments: none
 #   purpose: present player with options, use input() to get player move
@@ -38,7 +38,7 @@ def get_comp_move():
 #   purpose: allows the user to choose a number of rounds from 1 to 9.
 #   returns: the user-chosen number of rounds
 def get_rounds():
-    print("Caution: We need the number of rounds but if you input a letter, an error will occur.")
+    print("Caution: We need you to input the number of rounds for the game but if you input a letter, an error will occur.")
     num_of_rounds = input("Choose the number of rounds only from [1 to 9]: ")
     while int(num_of_rounds) < 1 or int(num_of_rounds) > 9:
         num_of_rounds = input("Choose the number of rounds ONLY from [1 to 9]: ")
@@ -99,7 +99,23 @@ def print_score(pscore, cscore, ties):
 def rps():
     print("Let's play Rock, Paper, Scissors!")
     if ask_for_tutorial() == 'y':
-        
+        give_tutorial()
+    print("Well then, let\'s begin.")
+    p_score = 0
+    c_score = 0
+    ties = 0
+    rounds = get_rounds()
+    round_number = 1
+    while rounds != 0:
+        print("Round {}!".format(round_number))
+        p_move = get_p1_move()
+        c_move = get_comp_move()
+        full_p_move = get_full_move(p_move)
+        full_c_move = get_full_move(c_move)
+        print("Your move: {}".format(full_p_move))
+        print("Computer's move: {}".format(full_c_move))
+        if get_round_winner(p_move, c_move) == "player":
+            
 
 #function name: tests
 #   arguments: none
