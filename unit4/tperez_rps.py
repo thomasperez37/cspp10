@@ -93,8 +93,8 @@ def get_full_move(shortmove):
 #   purpose: prints the scoreboard
 #   returns: none
 def print_score(p1score, p2score, ties):
-    print("Player 1 Score: {}".format(p1score))
-    print("Player 2 Score: {}".format(p2score))
+    print("Player 1\'s Score: {}".format(p1score))
+    print("Player 2\'s Score: {}".format(p2score))
     print("Ties: {}".format(ties))
 
 def print_winner(p1score, p2score):
