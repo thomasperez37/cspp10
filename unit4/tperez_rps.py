@@ -8,8 +8,7 @@ def ask_for_tutorial():
         
 def give_tutorial():
     print("------------------------------")
-    print("Wow...")
-    print("Uh...well anyway, you and the computer will choose Rock, Paper, or Scissors. Each item is strong against one item and weak against another.")
+    print("Player 1 and player 2 will each choose Rock, Paper, or Scissors. Each item is strong against one item and weak against another.")
     print("Rock is strong against Scissors and weak against Paper.")
     print("Paper is strong against Rock and weak against Scissors.")
     print("Scissors is strong against Paper and weak against Rock.")
@@ -93,6 +92,7 @@ def get_full_move(shortmove):
 #   purpose: prints the scoreboard
 #   returns: none
 def print_score(p1score, p2score, ties):
+    print("------------------------------")
     print("Player 1\'s Score: {}".format(p1score))
     print("Player 2\'s Score: {}".format(p2score))
     print("Ties: {}".format(ties))
