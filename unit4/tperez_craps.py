@@ -70,4 +70,30 @@ def ask_to_end_game():
     prompt = input("Would you like to make another bet? [\'y\' or \'n\'] ")
     while prompt != 'y' and prompt != 'n':
         print("You just have to answer \"Yes\" or \"No\" by typing either \'y\' or \'n\'.")
-        prompt = input("Would you like to make another bet? [\'y\' or \'n\'] ")
+        prompt = input("Now I will ask you again. Would you like to make another bet? [\'y\' or \'n\'] ")
+    if prompt == 'y':
+        return True
+    else:
+        return False
+        
+# function name: check_phase_3_rolls
+# purpose: it will keep checking each next roll
+# if the first roll is a point number
+# until a winning roll or a losing roll
+# is rolled
+# arguments: the result of the first roll
+# and the first phase 3 dice roll
+# returns: True, False, or does nothing
+def check_phase_3_rolls(first_roll_result,first_phase_3_roll):
+    if type(first_roll_result) == type(1):
+        while first_phase_3_roll != 7 and first_phase_3_roll != first_roll_result:
+            next_dice_roll = roll_dice()
+            if next_dice_roll == 7:
+                print("Rolling a {} in the . ".format(next_dice_roll))
+                return False
+            elif next_dice_roll == first_roll_result:
+                print("Rolling a {} in the . ".format(next_dice_roll))
+                return True
+    else:
+        return 0
+            
