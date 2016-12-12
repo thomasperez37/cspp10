@@ -8,6 +8,7 @@ def roll_dice():
     dice1 = random.randint(1,6)
     dice2 = random.randint(1,6)
     dice_sum = dice1 + dice2
+    print("------------------------------")
     print("A {} and a {} were rolled. The total of your dice roll is {}.".format(dice1,dice2,dice_sum))
     return dice_sum
 
@@ -20,6 +21,7 @@ def roll_dice():
 # arguments: bank_account
 # returns: the bet money
 def get_bet(bank_account):
+    print("------------------------------")
     print("You have ${} in your bank account.".format(bank_account))
     bet_money = input("How much will you bet from your bank money for this round? ")
     while int(bet_money) > bank_account or int(bet_money) != float(bet_money) or int(bet_money) < 0:
@@ -35,9 +37,8 @@ def get_bet(bank_account):
         elif int(bet_money) != float(bet_money):
             print("Your bet must be an integer.")
             bet_money = input("I ask you again. How much will you bet for this round? ")
-        else:
-            print("Your cannot bet negative money.")
-            bet_money = input("I ask you again. How much will you bet for this round? ")
+        print("Your cannot bet negative money.")
+        bet_money = input("I ask you again. How much will you bet for this round? ")
     return bet_money
     
 # function name: check_first_roll
@@ -55,9 +56,8 @@ def check_first_roll(first_roll):
     elif first_roll == 7 or first_roll == 11:
         print("Rolling a {} in the first phase means you win. Here's your win money.".format(first_roll))
         return True
-    else:
-        print("Rolling a {} in the first phase means you have to move to phase 3. {} is your point number then.".format(first_roll,first_roll))
-        return first_roll
+    print("Rolling a {} in the first phase means you have to move to phase 3. {} is your point number then.".format(first_roll,first_roll))
+    return first_roll
         
 # function name: ask_to_end_game
 # purpose: it will ask the user
@@ -67,14 +67,16 @@ def check_first_roll(first_roll):
 # arguments: None
 # returns: True or False
 def ask_to_end_game():
+    print("------------------------------")
     prompt = input("Would you like to make another bet? [\'y\' or \'n\'] ")
     while prompt != 'y' and prompt != 'n':
         print("You just have to answer \"Yes\" or \"No\" by typing either \'y\' or \'n\'.")
         prompt = input("Now I will ask you again. Would you like to make another bet? [\'y\' or \'n\'] ")
     if prompt == 'y':
+        print("Then we shall continue.")
         return True
-    else:
-        return False
+    print("Then we shall not continue.")
+    return False
         
 # function name: check_phase_3_rolls
 # purpose: it will keep checking each next roll
@@ -89,11 +91,23 @@ def check_phase_3_rolls(first_roll_result,first_phase_3_roll):
         while first_phase_3_roll != 7 and first_phase_3_roll != first_roll_result:
             next_dice_roll = roll_dice()
             if next_dice_roll == 7:
-                print("Rolling a {} in the . ".format(next_dice_roll))
+                print("Rolling a 7 in phase 3 means you lose. Give me your money!")
                 return False
             elif next_dice_roll == first_roll_result:
-                print("Rolling a {} in the . ".format(next_dice_roll))
+                print("Rolling a {} in phase 3 means you win. Here's your win money.".format(next_dice_roll))
                 return True
-    else:
-        return 0
+            print("Rolling a {} in phase 3 means you have to roll again.".format(next_dice_roll))
+    return 0
             
+# function name: craps
+# purpose: the main game function, uses all of
+# the functions to perform game
+# arguments: None
+# returns: None
+def craps():
+    print("Let's play Craps!")
+    bank_cash = 100
+    run_game = True
+    while run_game == True:
+        bet = get_bet(bank_cash)
+        
