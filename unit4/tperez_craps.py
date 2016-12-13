@@ -86,17 +86,21 @@ def ask_to_end_game():
 # arguments: the result of the first roll
 # and the first phase 3 dice roll
 # returns: True, False, or does nothing
-def check_phase_3_rolls(first_roll_result,first_phase_3_roll):
+def check_phase_3_rolls(first_roll_result):
     if type(first_roll_result) == type(1):
+        first_phase_3_roll = roll_dice()
         while first_phase_3_roll != 7 and first_phase_3_roll != first_roll_result:
             next_dice_roll = roll_dice()
             if next_dice_roll == 7:
                 print("Rolling a 7 in phase 3 means you lose. Give me your money!")
+                input("Press enter to continue")
                 return False
             elif next_dice_roll == first_roll_result:
                 print("Rolling a {} in phase 3 means you win. Here's your win money.".format(next_dice_roll))
+                input("Press enter to continue")
                 return True
             print("Rolling a {} in phase 3 means you have to roll again.".format(next_dice_roll))
+            input("Press enter to continue")
     return 0
             
 # function name: craps
@@ -107,7 +111,39 @@ def check_phase_3_rolls(first_roll_result,first_phase_3_roll):
 def craps():
     print("Let's play Craps!")
     bank_cash = 100
+    round_counter = 0
     run_game = True
-    while run_game == True:
+    while run_game == True and bank_cash > 0:
         bet = get_bet(bank_cash)
+        round_counter = round_counter + 1
+        print("------------------------------")
+        print("Round {}!".format(round_counter))
+        first_dice_roll = roll_dice()
+        phase2 = check_first_roll(first_dice_roll)
+        input("Press enter to continue.")
+        phase3_rolls = check_phase_3_rolls(phase2)
+        if phase3_rolls == 0:
+            if phase2 == True:
+                print("------------------------------")
+                print("${} is added to the bank.".format(bet))
+                bank_cash = bank_cash + bet
+                run_game = ask_to_end_game()
+            print("------------------------------")
+            print("${} is taken from the bank.".format(bet))
+            bank_cash = bank_cash - bet
+            run_game = ask_to_end_game()
+        elif phase3_rolls == True:
+            print("------------------------------")
+            print("${} is added to the bank.".format(bet))
+            bank_cash = bank_cash + bet
+            run_game = ask_to_end_game()
+        else:
+            print("------------------------------")
+            print("${} is taken from the bank.".format(bet))
+            bank_cash = bank_cash - bet
+            run_game = ask_to_end_game()
+    if bank_cash == 0:
+                    
         
+        
+# Use input("Press enter to continue") 
