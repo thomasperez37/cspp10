@@ -37,9 +37,10 @@ def get_bet(bank_account):
         elif int(bet_money) != float(bet_money):
             print("Your bet must be an integer.")
             bet_money = input("I ask you again. How much will you bet for this round? ")
-        print("Your cannot bet negative money.")
-        bet_money = input("I ask you again. How much will you bet for this round? ")
-    return bet_money
+        else:
+            print("Your cannot bet negative money.")
+            bet_money = input("I ask you again. How much will you bet for this round? ")
+    return int(bet_money)
     
 # function name: check_first_roll
 # purpose: returns whether the first roll
@@ -89,18 +90,21 @@ def ask_to_end_game():
 def check_phase_3_rolls(first_roll_result):
     if type(first_roll_result) == type(1):
         first_phase_3_roll = roll_dice()
-        while first_phase_3_roll != 7 and first_phase_3_roll != first_roll_result:
-            next_dice_roll = roll_dice()
-            if next_dice_roll == 7:
-                print("Rolling a 7 in phase 3 means you lose. Give me your money!")
-                input("Press enter to continue")
-                return False
-            elif next_dice_roll == first_roll_result:
-                print("Rolling a {} in phase 3 means you win. Here's your win money.".format(next_dice_roll))
-                input("Press enter to continue")
-                return True
-            print("Rolling a {} in phase 3 means you have to roll again.".format(next_dice_roll))
+        if first_phase_3_roll != 7 and first_phase_3_roll != first_roll_result:
+            print("Rolling a {} in phase 3 means you have to roll again.".format(first_phase_3_roll))
             input("Press enter to continue")
+            while first_phase_3_roll != 7 and first_phase_3_roll != first_roll_result:
+                next_dice_roll = roll_dice()
+                if next_dice_roll == 7:
+                    print("Rolling a 7 in phase 3 means you lose. Give me your money!")
+                    input("Press enter to continue")
+                    return False
+                elif next_dice_roll == first_roll_result:
+                    print("Rolling a {} in phase 3 means you win. Here's your win money.".format(next_dice_roll))
+                    input("Press enter to continue")
+                    return True
+                print("Rolling a {} in phase 3 means you have to roll again.".format(next_dice_roll))
+                input("Press enter to continue")
     return 0
             
 # function name: craps
@@ -128,10 +132,12 @@ def craps():
                 print("${} is added to the bank.".format(bet))
                 bank_cash = bank_cash + bet
                 run_game = ask_to_end_game()
-            print("------------------------------")
-            print("${} is taken from the bank.".format(bet))
-            bank_cash = bank_cash - bet
-            run_game = ask_to_end_game()
+            else:
+                print("------------------------------")
+                print("${} is taken from the bank.".format(bet))
+                bank_cash = bank_cash - bet
+                if bank_cash > 0:
+                    run_game = ask_to_end_game()
         elif phase3_rolls == True:
             print("------------------------------")
             print("${} is added to the bank.".format(bet))
@@ -141,9 +147,20 @@ def craps():
             print("------------------------------")
             print("${} is taken from the bank.".format(bet))
             bank_cash = bank_cash - bet
-            run_game = ask_to_end_game()
+            if bank_cash > 0:
+                run_game = ask_to_end_game()
     if bank_cash == 0:
-                    
+        print("------------------------------")
+        print("You have lost all your money! You lose.")
+    else:
+        print("------------------------------")
+        print("You ended our game of Craps with ${} in the bank.".format(bank_cash))
+        if bank_cash < 100:
+            print("Wait! That's less than what you had in the beginning!")
+            print("Well, whatever. Anyway it's")
+    print("GAME OVER.")
+        
+craps()
         
         
 # Use input("Press enter to continue") 
