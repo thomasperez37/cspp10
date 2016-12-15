@@ -23,23 +23,23 @@ def roll_dice():
 def get_bet(bank_account):
     print("------------------------------")
     print("You have ${} in your bank account.".format(bank_account))
-    bet_money = input("How much will you bet from your bank money for this round? ")
-    while int(bet_money) > bank_account or int(bet_money) != float(bet_money) or int(bet_money) < 0:
-        if int(bet_money) != float(bet_money) and int(bet_money) < 0:
-            print("Your bet must be an integer and you can not bet negative money.")
-            bet_money = input("I ask you again. How much will you bet for this round? ")
-        elif int(bet_money) > bank_account and int(bet_money) != float(bet_money):
+    bet_money = float(input("How much will you bet from your bank money for this round? "))
+    while int(bet_money) > bank_account or int(bet_money) != bet_money or int(bet_money) < 0:
+        if int(bet_money) != bet_money and int(bet_money) < 0:
+            print("Your bet must be an integer and you can not bet nonexistent money.")
+            bet_money = float(input("I ask you again. How much will you bet for this round? "))
+        elif int(bet_money) > bank_account and int(bet_money) != bet_money:
             print("Your bet must be an integer and you can not bet more than what you have in the bank.")
-            bet_money = input("I ask you again. How much will you bet for this round? ")
+            bet_money = float(input("I ask you again. How much will you bet for this round? "))
         elif int(bet_money) > bank_account:
             print("Your bet money can not be more than what you have in the bank.")
-            bet_money = input("I ask you again. How much will you bet for this round? ")
-        elif int(bet_money) != float(bet_money):
+            bet_money = float(input("I ask you again. How much will you bet for this round? "))
+        elif int(bet_money) != bet_money:
             print("Your bet must be an integer.")
-            bet_money = input("I ask you again. How much will you bet for this round? ")
+            bet_money = float(input("I ask you again. How much will you bet for this round? "))
         else:
-            print("Your cannot bet negative money.")
-            bet_money = input("I ask you again. How much will you bet for this round? ")
+            print("Your cannot bet nonexistent money.")
+            bet_money = float(input("I ask you again. How much will you bet for this round? "))
     return int(bet_money)
     
 # function name: check_first_roll
@@ -106,14 +106,20 @@ def check_phase_3_rolls(first_roll_result):
                 print("Rolling a {} in phase 3 means you have to roll again.".format(next_dice_roll))
                 input("Press enter to continue")
     return 0
-            
+
+# function name: give_ending_response
+# purpose: gives some final remarks
+# about the outcome of the game
+# arguments: bank cash
+# returns: nothing but print statements
+
 # function name: craps
 # purpose: the main game function, uses all of
 # the functions to perform game
 # arguments: None
 # returns: None
 def craps():
-    print("Let's play Craps!")
+    print("Let\'s play Craps!")
     bank_cash = 100
     round_counter = 0
     run_game = True
@@ -156,11 +162,15 @@ def craps():
         print("------------------------------")
         print("You ended our game of Craps with ${} in the bank.".format(bank_cash))
         if bank_cash < 100:
-            print("Wait! That's less than what you had in the beginning!")
-            print("Well, whatever. Anyway it's")
+            print("Wait! You've just lost ${} from the $100 you had in the beginning!".format(100 - bank_cash))
+            print("Well, whatever. Nevertheless it\'s")
+        elif bank_cash > 100:
+            print("Hey! You have made ${} more than the $100 you had before! Good Job!".format(bank_cash - 100))
+            print("Anyway, it\'s")
+        else:
+            print("You didn\'t even make anything.")
     print("GAME OVER.")
         
 craps()
         
         
-# Use input("Press enter to continue") 
