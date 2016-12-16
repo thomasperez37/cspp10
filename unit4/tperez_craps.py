@@ -55,7 +55,7 @@ def check_first_roll(first_roll):
         print("Rolling a {} in the first phase means you lose. Give me your money!".format(first_roll))
         return False
     elif first_roll == 7 or first_roll == 11:
-        print("Rolling a {} in the first phase means you win. Here's your win money.".format(first_roll))
+        print("Rolling a {} in the first phase means you win. Here\'s your win money.".format(first_roll))
         return True
     print("Rolling a {} in the first phase means you have to move to phase 3. {} is your point number then.".format(first_roll,first_roll))
     return first_roll
@@ -71,7 +71,7 @@ def ask_to_end_game():
     print("------------------------------")
     prompt = input("Would you like to make another bet? [\'y\' or \'n\'] ")
     while prompt != 'y' and prompt != 'n':
-        print("You just have to answer \"Yes\" or \"No\" by typing either \'y\' or \'n\'.")
+        print("You can answer \"Yes\" or \"No\" by typing either \'y\' or \'n\'.")
         prompt = input("Now I will ask you again. Would you like to make another bet? [\'y\' or \'n\'] ")
     if prompt == 'y':
         print("Then we shall continue.")
@@ -81,11 +81,10 @@ def ask_to_end_game():
         
 # function name: check_phase_3_rolls
 # purpose: it will keep checking each next roll
-# if the first roll is a point number
+# if the first roll isn't a point number
 # until a winning roll or a losing roll
 # is rolled
 # arguments: the result of the first roll
-# and the first phase 3 dice roll
 # returns: True, False, or does nothing
 def check_phase_3_rolls(first_roll_result):
     if type(first_roll_result) == type(1):
@@ -100,7 +99,7 @@ def check_phase_3_rolls(first_roll_result):
                     input("Press enter to continue")
                     return False
                 elif next_dice_roll == first_roll_result:
-                    print("Rolling a {} in phase 3 means you win. Here's your win money.".format(next_dice_roll))
+                    print("Rolling a {} in phase 3 means you win. Here\'s your win money.".format(next_dice_roll))
                     input("Press enter to continue")
                     return True
                 print("Rolling a {} in phase 3 means you have to roll again.".format(next_dice_roll))
@@ -108,11 +107,47 @@ def check_phase_3_rolls(first_roll_result):
     return 0
 
 # function name: give_ending_response
-# purpose: gives some final remarks
+# purpose: prints some final remarks
 # about the outcome of the game
 # arguments: bank cash
 # returns: nothing but print statements
-
+def give_ending_response(final_money_count):
+    if final_money_count == 0:
+        print("------------------------------")
+        print("You have lost all your money! You lose.")
+    else:
+        print("------------------------------")
+        print("You ended our game of Craps with ${} in the bank.".format(final_money_count))
+        if final_money_count < 100:
+            print("Well, you\'ve just lost ${} from the $100 you had in the beginning.".format(100 - final_money_count))
+            print("Well, you are giving up anyway so whatever. Nevertheless it\'s")
+        elif final_money_count > 100:
+            print("Hey! You have made ${} more than the $100 you had before! Good Job!".format(final_money_count - 100))
+            print("Anyway, thanks for playing. Now it\'s")
+        else:
+            print("You didn\'t even make anything.")
+    print("GAME OVER.")
+    
+# function name: ask_for_tutorial
+# purpose: asks if you want a tutorial
+# and will print out a tutorial
+# if you say yes
+# arguments: None
+# returns: None
+def ask_for_tutorial():
+    print("------------------------------")
+    tutorial_prompt = input("Would you like a tutorial on Craps? [\'y\' or \'n\'] ")
+    while tutorial_prompt != 'y' and tutorial_prompt != 'n':
+        print("You can answer \"Yes\" or \"No\" by typing either \'y\' or \'n\'.")
+        tutorial_prompt = input("Now I will ask you again. Would you like a tutorial on Craps? [\'y\' or \'n\'] ")
+    if tutorial_prompt == 'y':
+        input("Press enter to continue to the tutorial.")
+        print("------------------------------")
+        print("Craps is a gambling game where the player can bet money")
+        print("and then dice is rolled. Based on t")
+    else:
+        print("Then we shall begin the game.")
+    
 # function name: craps
 # purpose: the main game function, uses all of
 # the functions to perform game
@@ -155,22 +190,6 @@ def craps():
             bank_cash = bank_cash - bet
             if bank_cash > 0:
                 run_game = ask_to_end_game()
-    if bank_cash == 0:
-        print("------------------------------")
-        print("You have lost all your money! You lose.")
-    else:
-        print("------------------------------")
-        print("You ended our game of Craps with ${} in the bank.".format(bank_cash))
-        if bank_cash < 100:
-            print("Wait! You've just lost ${} from the $100 you had in the beginning!".format(100 - bank_cash))
-            print("Well, whatever. Nevertheless it\'s")
-        elif bank_cash > 100:
-            print("Hey! You have made ${} more than the $100 you had before! Good Job!".format(bank_cash - 100))
-            print("Anyway, it\'s")
-        else:
-            print("You didn\'t even make anything.")
-    print("GAME OVER.")
+    give_ending_response(bank_cash)
         
 craps()
-        
-        
