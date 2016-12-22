@@ -88,25 +88,28 @@ def ask_to_end_game():
 # returns: True, False, or does nothing
 def check_phase_3_rolls(first_roll_result):
     if type(first_roll_result) == type(1):
-        first_phase_3_roll = roll_dice()
-        if first_phase_3_roll != 7 and first_phase_3_roll != first_roll_result:
-            print("Rolling a {} in phase 3 means you have to roll again.".format(first_phase_3_roll))
-            print("Remember. Your point number is {}.".format(first_roll_result))
+        next_dice_roll = roll_dice()
+        if next_dice_roll == 7:
+            print("Rolling a 7 in phase 3 means you lose. Give me your money!")
             input("Press enter to continue")
-            while first_phase_3_roll != 7 and first_phase_3_roll != first_roll_result:
-                next_dice_roll = roll_dice()
-                if next_dice_roll == 7:
-                    print("Rolling a 7 in phase 3 means you lose. Give me your money!")
-                    input("Press enter to continue")
-                    return False
-                elif next_dice_roll == first_roll_result:
-                    print("Rolling a {} in phase 3 means you win. Here\'s your win money.".format(next_dice_roll))
-                    input("Press enter to continue")
-                    return True
-                print("Rolling a {} in phase 3 gives you nothing. You have to roll again.".format(next_dice_roll))
-                print("The point number you need to win is {}.".format(first_roll_result))
+            return False
+        elif next_dice_roll == first_roll_result:
+            print("Rolling a {} in phase 3 means you win. Here\'s your win money.".format(next_dice_roll))
+            input("Press enter to continue")
+            return True
+        while True:
+            print("Rolling a {} in phase 3 gives you nothing.".format(next_dice_roll))
+            print("The point number you need to win is {}. Roll again.".format(first_roll_result))
+            input("Press enter to continue")
+            next_dice_roll = roll_dice()
+            if next_dice_roll == 7:
+                print("Rolling a 7 in phase 3 means you lose. Give me your money!")
                 input("Press enter to continue")
-        elif
+                return False
+            elif next_dice_roll == first_roll_result:
+                print("Rolling a {} in phase 3 means you win. Here\'s your win money.".format(next_dice_roll))
+                input("Press enter to continue")
+                return True
     return 0
 
 # function name: give_ending_response
