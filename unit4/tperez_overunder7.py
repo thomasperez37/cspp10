@@ -52,28 +52,28 @@ def get_bet(bank_account):
 # name: get_range
 # arguments: sum of dice
 # returns: the range:
-#           "over7" if over 7
-#           "under7" if under 7
-#           "equal7" if equal to 7
+#           "over 7" if over 7
+#           "under 7" if under 7
+#           "equal 7" if equal to 7
 def get_range(dice_sum):
-    # if the sum is over 7, return "over7"
+    # if the sum is over 7, return "over 7"
     if dice_sum > 7:
-        return "over7"
-    # if the sum is under 7, return "under7"
+        return "over 7"
+    # if the sum is under 7, return "under 7"
     if dice_sum < 7:
-        return "under7"
-    # if the sum is 7, return "equal7"
+        return "under 7"
+    # if the sum is 7, return "equal 7"
     if dice_sum == 7:
-        return "equal7"
+        return "equal 7"
         
 # function for getting the user's choice of range
 # name: choose_range
 # arguments: none
 # returns: player's choice of range
-#       "over7", "under7", or "equal7"
+#       "over 7", "under 7", or "equal 7"
 def choose_range():
-    # present user with choices "over7", "under7",
-    #   or "equal7"
+    # present user with choices "over 7", "under 7",
+    #   or "equal 7"
     print("Choose a range to roll for from the list below.")
     print("1. Roll for a number under 7.")
     print("2. Roll for a number over 7.")
@@ -86,15 +86,38 @@ def choose_range():
         range_choice = input("Just choose a range by typing it\'s corresponding number. ")
     # converts choice into recognizable words
     if range_choice == '1':
-        range_choice = "under7"
+        range_choice = "under 7"
     elif range_choice == '2':
-        range_choice = "over7"
+        range_choice = "over 7"
     else:
-        range_choice = "equal7"
+        range_choice = "equal 7"
     # return their choice
     return range_choice
 
 # function to check if your roll won the bet
 # name: check_roll
-
+# arguments: the dice roll, it's outcome 
+# and the range you chose for it
+# returns: True or False
+def check_roll(your_roll,outcome,chosen_range):
+    # prints out outcome of the roll and returns
+    # True, False, or "big win" based on the outcome
+    if outcome == chosen_range:
+        if outcome != "equal 7":
+            print("You rolled a {} which is {} and that matches your range! Here\'s your bet money.".format(your_roll,outcome))
+            return True
+        else:
+            print("You rolled a 7! You receive four times the amount of your bet!")
+            return "big win"
+    else:
+        print("Sadly, that roll doesn\'t match your range. Give me your bet money.")
+        return False
+        
 # function for the main game
+# name: overunder7
+# arguments: none
+# returns: none
+def overunder7():
+    bank_money = 100
+    while bank_money > 0:
+        range_prompt = choose_range()
