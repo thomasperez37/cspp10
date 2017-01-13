@@ -15,15 +15,14 @@ while choice_of_input != "exit":
     if num_checker > 0 and string_checker == False:      
         num_list.append(int(choice_of_input))
         choice_of_input = input("Enter a number or a command: ")
-    if choice_of_input == "sum":
+    elif choice_of_input == "sum":
         accumulator = 0
         for num in range(len(num_list)):
             accumulator = accumulator + num_list[num]
         print("The sum of all the numbers in the list is {}.".format(accumulator))
         choice_of_input = input("Enter a number or a command: ")
     elif choice_of_input == "clear":
-        for num in range(len(num_list)):
-            num_list.remove(num_list[num])
+        num_list = []
         choice_of_input = input("Enter a number or a command: ")
     elif choice_of_input == "print":
         print(num_list)
