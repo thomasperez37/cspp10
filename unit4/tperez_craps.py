@@ -188,7 +188,7 @@ def give_tutorial():
     print("game at the end of each round.")
     input("Press enter to continue.")
     print("")
-    print("Now that\'s all for the tutorial! Let\'s play Craps!")
+    print("Now that\'s all for the tutorial! Now let\'s actually play Craps!")
   
 # function name: craps
 # purpose: the main game function, uses all of

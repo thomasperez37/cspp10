@@ -58,17 +58,13 @@ def get_rounds():
 #               "player2" if player2 won
 #               "tie" if it's a tie
 def get_round_winner(p1move, p2move):
-    if p1move == "r" and p2move == "s":
+    if (p1move == "r" and p2move == "s") \
+    or (p1move == "s" and p2move == "p") \
+    or (p1move == "p" and p2move == "r"):
         return "player1"
-    elif p1move == "s" and p2move == "p":
-        return "player1"
-    elif p1move == "p" and p2move == "r":
-        return "player1"
-    elif p1move == "s" and p2move == "r":
-        return "player2"
-    elif p1move == "p" and p2move == "s":
-        return "player2"
-    elif p1move == "r" and p2move == "p":
+    elif (p1move == "s" and p2move == "r") \
+    or (p1move == "p" and p2move == "s") \
+    or (p1move == "r" and p2move == "p"):
         return "player2"
     else:
         return "tie"
