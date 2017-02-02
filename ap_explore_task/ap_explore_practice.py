@@ -12,10 +12,6 @@ def seperator(word):
         letters.append(word[index])
     return letters
     
-def scrambler(difficulty, letters):
+def scrambler(difficulty, word):
     for scramble_times in range(difficulty):
-        index1 = random.randint(0,len(letters)-1)
-        index2 = random.randint(0,len(letters)-1)
-        while index1 == index2:
-            index1 = random.randint(0,len(letters)-1)
-            index2 = random.randint(0,len(letters)-1)
+        index1 = random.randint(0,len(word)-1)
