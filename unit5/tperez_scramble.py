@@ -1,4 +1,4 @@
-# import random
+# import random https://docs.google.com/document/d/1O8tJ3CZ7pSJCjCd1kCQ-ekdmxZI-6csQ7jzU1AwIi2A/edit
 # define a function that only scrambles 4 letter long words,
 # turns the strings into lists, does not shuffle the first and last letter,
 # and returns the scrambled word
@@ -17,9 +17,26 @@
 # the same way as usual
 
 import random
+from mp_swap import swap
 
 def scramble_word(word_item):
     if len(word_item) > 3:
-        letters = list(word_item)
-        first_letter = letters[:1]
-        second_letter = letters[-1:]
+        all_letters = list(word_item)
+        first_letter = all_letters[:1]
+        last_letter = all_letters[-1:]
+        remaining_letters = all_letters[1:len(all_letters)-1]
+        remaining_letters_copy = remaining_letters
+        while remaining_letters == remaining_letters_copy:
+            for scramble_times in range(5):
+                index1 = random.randint(0,len(remaining_letters)-1)
+                index2 = random.randint(0,len(remaining_letters)-1)
+                while index1 == index2:
+                    index1 = random.randint(0,len(remaining_letters)-1)
+                    index2 = random.randint(0,len(remaining_letters)-1)
+                swap(remaining_letters,index1,index2)
+        new_letters = remaining_letters
+        new_letters.insert(0,first_letter)
+        new_letters.append(last_letter)
+        new_word = ''.join(new_letters)
+        return new_word
+    return word_item
