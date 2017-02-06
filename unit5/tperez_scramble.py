@@ -24,8 +24,8 @@ def scramble_word(word_item):
         all_letters = list(word_item)
         first_letter = all_letters[:1]
         last_letter = all_letters[-1:]
-        remaining_letters = all_letters[1:len(all_letters)-1]
-        remaining_letters_copy = remaining_letters
+        remaining_letters = all_letters[1:len(all_letters)-1]#edit this mores
+        remaining_letters_copy = ''.join(remaining_letters)#edit this more
         while remaining_letters == remaining_letters_copy:
             for scramble_times in range(5):
                 index1 = random.randint(0,len(remaining_letters)-1)
@@ -40,3 +40,12 @@ def scramble_word(word_item):
         new_word = ''.join(new_letters)
         return new_word
     return word_item
+    
+def scramble_phase(phrase):
+    word_list = phrase.split(" ")
+    for word in word_list:
+        word = scramble_word(word)
+    new_phrase = " ".join(word_list)
+    return new_phrase
+    
+scramble_phase(input("Please enter the phrase you want scrambled: "))
