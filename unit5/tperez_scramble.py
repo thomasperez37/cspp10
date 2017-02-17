@@ -25,8 +25,9 @@ def scramble_word(word_item):
         first_letter = all_letters[:1]
         last_letter = all_letters[-1:]
         remaining_letters = all_letters[1:len(all_letters)-1]#edit this mores
-        remaining_letters_copy = ''.join(remaining_letters)#edit this more
-        while remaining_letters == remaining_letters_copy:
+        remaining_letters_copy1 = ''.join(remaining_letters)#edit this more
+        remaining_letters_copy2 = ''.join(remaining_letters)
+        while remaining_letters_copy1 == remaining_letters_copy2:
             for scramble_times in range(5):
                 index1 = random.randint(0,len(remaining_letters)-1)
                 index2 = random.randint(0,len(remaining_letters)-1)
@@ -34,6 +35,7 @@ def scramble_word(word_item):
                     index1 = random.randint(0,len(remaining_letters)-1)
                     index2 = random.randint(0,len(remaining_letters)-1)
                 swap(remaining_letters,index1,index2)
+            remaining_letters_copy2 = ''.join(remaining_letters)
         new_letters = remaining_letters
         new_letters.insert(0,first_letter)
         new_letters.append(last_letter)

@@ -23,7 +23,7 @@ def update(dictionary_list):
 def give_dictionary_options():
     dictionary = {}
     print("You have 5 options. Type in \'add\' to be able to add a new key-value pair. However, you won\'t be able to add a new key-value pair that has the same key as another pair.")
-    print("Type in \'remove key\' to be able to remove a key-value pair by typing it\'s corresponding key.")
+    print("Type in \'remove_key\' to be able to remove a key-value pair by typing it\'s corresponding key.")
     print("Type in \'update\' to be able to change an already existing key-value pair\'s value.")
     print("Type in \'print\' to print out the dictionary.")
     print("Type in \'exit\' to end the program.")
@@ -32,7 +32,7 @@ def give_dictionary_options():
         if selected_option == 'add':
             add(dictionary)
             selected_option = input("Please choose another one of the 5 options: ")
-        elif selected_option == 'remove key':
+        elif selected_option == 'remove_key':
             remove_key(dictionary)
             selected_option = input("Please choose another one of the 5 options: ")
         elif selected_option == 'update':
@@ -41,8 +41,9 @@ def give_dictionary_options():
         elif selected_option == 'print':
             pprint(dictionary)
             selected_option = input("Please choose another one of the 5 options: ")
-        elif selected_option == 'exit':
-            print("PROGRAM END")
         else:
             print("Not a valid option")
             selected_option = input("Please choose another one of the 5 options: ")
+    print("PROGRAM END")
+            
+give_dictionary_options()
